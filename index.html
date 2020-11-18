@@ -20,10 +20,18 @@ let lastX = 0; // where line starts
 let lastY = 0; // where line ends
 
 function draw(e) { // draw with event will run when moving mouse on canvas
+    if(!isDrawing) return; // stop the function from running when the are not mousedown
+    
     console.log(e);
 }
 
-canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mousemove', draw); // listens for mouse moving on canvas
+canvas.addEventListener('mousedown', () => isDrawing = true); // listens for clicked mouse on canvas and returns true so it runs the pen
+canvas.addEventListener('mouseup', () => isDrawing = false); // listens for mouse being unclicked and returns false so drawing stops
+canvas.addEventListener('mouseout', () => isDrawing = false); // listens for mouse going off screen and returns false so drawing stops
+
+
+
 </script>
 
 <style>
