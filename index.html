@@ -14,15 +14,18 @@ canvas.height = window.innerHeight; // canvas will fill browser window
 ctx.strokeStyle = '#BADA55'; // colour of pen
 ctx.lineJoin = 'round'; // round pen on joins
 ctx.lineCap = 'round'; // round pen
+ctx.lineWidth = 100; // thickness of line
 
 let isDrawing = false; // the pen will not draw when false
 let lastX = 0; // where line starts
 let lastY = 0; // where line ends
+let hue = 0; // colours of lines
 
 function draw(e) { // draw with event will run when moving mouse on canvas
     if (!isDrawing) return; // stop the function from running when the are not mousedown
     
     console.log(e);
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`; // 100% saturation, 50% lightness using hsl rainbow colours (https://mothereffinghsl.com/)
     ctx.beginPath(e); // start drawing path event
     ctx.moveTo(lastX, lastY); // tells it where to start and end
     ctx.lineTo(e.offsetX, e.offsetY);
