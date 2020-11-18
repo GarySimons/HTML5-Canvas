@@ -9,9 +9,21 @@
 <script>
 const canvas = document.querySelector('#draw'); // grab the canvas
 const ctx = canvas.getContext('2d'); // create 2d context to draw on
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = window.innerWidth; // canvas will fill browser window
+canvas.height = window.innerHeight; // canvas will fill browser window
+ctx.strokeStyle = '#BADA55'; // colour of pen
+ctx.lineJoin = 'round'; // round pen on joins
+ctx.lineCap = 'round'; // round pen
 
+let isDrawing = false; // the pen will not draw when false
+let lastX = 0; // where line starts
+let lastY = 0; // where line ends
+
+function draw(e) { // draw with event will run when moving mouse on canvas
+    console.log(e);
+}
+
+canvas.addEventListener('mousemove', draw);
 </script>
 
 <style>
