@@ -20,6 +20,7 @@ let isDrawing = false; // the pen will not draw when false
 let lastX = 0; // where line starts
 let lastY = 0; // where line ends
 let hue = 0; // colours of lines
+let direction = true; 
 
 function draw(e) { // draw with event will run when moving mouse on canvas
     if (!isDrawing) return; // stop the function from running when the are not mousedown
@@ -31,6 +32,19 @@ function draw(e) { // draw with event will run when moving mouse on canvas
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
     [lastX, lastY] = [e.offsetX, e.offsetY];
+    
+    hue++; // increments the hsl colours so goes through rainbow
+    if(hue >= 360) {
+        hue = 0; // when hue reached 360 (end), start again from 0
+    }
+    if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {// if lineWidth is >= 100 or <= 1
+        direction = !direction; // then flip direction
+    }
+    if (direction) {
+        ctx.lineWidth++; // will increment the line width up
+    }   else {
+        ctx.lineWidth--; // will increment the line width down
+    }
 }
 
 canvas.addEventListener('mousedown', (e) => { // listens for clicked mouse 
